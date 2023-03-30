@@ -12,7 +12,7 @@ const handler = async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: "akuyaekorot@gmail.com, akuya@mapato.co",
+    to: "akuyaekorot@gmail.com, akuya@mapato.co, wainaina@mapato.co, wainainakasyoka@gmail.com, faith.murungu@mapato.co, murunguf07@gmail.com",
     subject: `MAPATO: Form Submission from ${name}`,
     html: `<div>
             <h2>Name</h2>

@@ -3,15 +3,14 @@
 import { useForm } from "react-hook-form"
 import Image from "next/image";
 import { Inter, DM_Serif_Display } from 'next/font/google';
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 const display = DM_Serif_Display({ weight: "400", subsets: ['latin'] });
 
 export default function Home() {
   return (
-    <main className={`bg-[#1b1f22] text-white ${inter.className}`}>
+    <main className={`bg-[#1b1f22] text-white lg:pb-10 ${inter.className}`}>
       <NavBar />
       <Hero />
       <AboutUs />
@@ -23,13 +22,12 @@ export default function Home() {
 
 const Form = () => {
   const { register, handleSubmit, reset, formState } = useForm();
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset({name: "", email: "", phone: "", message: ""})
     }
-  }, [formState.isSubmitSuccessful, setIsSubmitted, reset])
+  }, [formState.isSubmitSuccessful, reset])
 
   const onSubmit = async (data) => {
     try {
@@ -40,10 +38,7 @@ const Form = () => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
-       }) 
-
-      console.log(res)
-
+       })
     } catch (error) {
       console.error(error);
     }
@@ -51,48 +46,40 @@ const Form = () => {
 
   return (
     <>
-      {!isSubmitted && (
-        <form id="contact" className="py-20 w-full flex flex-col items-center justify-center" onSubmit={handleSubmit(onSubmit)} >
-          <div className="w-full max-w-7xl items-center gap-10 flex flex-col ">
-            <Heading2 text="Contact Us" />
-            <div className="w-full max-w-xl gap-6 flex flex-col ">
-              <div className="flex flex-col gap-3">
-                <label htmlFor="name">Name</label>
-                <input className="rounded outline-none p-2 text-black" placeholder="Jane Doe" id="name" type="text" {...register("name", { required: true })} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <label htmlFor="phone">Phone</label>
-                <input className="rounded outline-none p-2 text-black" placeholder="0701234567" id="phone" type="phone" {...register("phone", { required: true })} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <label htmlFor="email">Email</label>
-                <input className="rounded outline-none p-2 text-black" placeholder="jane@doe.com" id="email" type="email" {...register("email", { required: true })} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <label htmlFor="message">Message</label>
-                <textarea className="rounded outline-none p-2 text-black h-40" placeholder="Start typing..." id="message" type="message" {...register("message", { required: true })}></textarea>
-              </div>
-              <button type="submit" className="rounded border border-white p-4">Send</button>
+      <form id="contact" className="lg:py-20 md:py-16 py-14 lg:px-20 px-10 w-full flex flex-col items-center justify-center" onSubmit={handleSubmit(onSubmit)} >
+        <div className="w-full max-w-7xl items-center gap-10 flex flex-col ">
+          <Heading2 text="Contact Us" />
+          <div className="w-full max-w-xl gap-6 flex flex-col ">
+            <div className="flex flex-col gap-3">
+              <label htmlFor="name">Name</label>
+              <input className="rounded outline-none p-2 text-black" placeholder="Jane Doe" id="name" type="text" {...register("name", { required: true })} />
             </div>
+            <div className="flex flex-col gap-3">
+              <label htmlFor="phone">Phone</label>
+              <input className="rounded outline-none p-2 text-black" placeholder="0701234567" id="phone" type="phone" {...register("phone", { required: true })} />
+            </div>
+            <div className="flex flex-col gap-3">
+              <label htmlFor="email">Email</label>
+              <input className="rounded outline-none p-2 text-black" placeholder="jane@doe.com" id="email" type="email" {...register("email", { required: true })} />
+            </div>
+            <div className="flex flex-col gap-3">
+              <label htmlFor="message">Message</label>
+              <textarea className="rounded outline-none p-2 text-black h-40" placeholder="Start typing..." id="message" type="message" {...register("message", { required: true })}></textarea>
+            </div>
+            <button type="submit" className="rounded border border-white p-4">Send</button>
           </div>
-        </form>
-      )}
-
-      {isSubmitted && (
-        <div>
-          <Heading3 text="Thanks" />
         </div>
-      )}
+      </form>
     </>
   )
 }
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 w-full flex flex-col items-center justify-center">
+    <section id="about-us" className="lg:py-20 md:py-16 py-14 lg:px-20 px-10 w-full flex flex-col items-center justify-center">
       <div className="w-full max-w-7xl gap-10 flex flex-col ">
         <Heading2 text="Services we offer" />
-        <p className="w-full max-w-4xl flex text-2xl">
+        <p className="w-full max-w-4xl flex lg:text-xl md:text-lg text-md">
           We are passionate about delivering effective copy, and strategy in marketing, digital and content.
         </p>
         <div className="flex flex-col gap-6 w-full">
@@ -130,11 +117,13 @@ const Services = () => {
 
 const ServiceCard = ({ imageSrc, title, paragraph, reverse }) => {
   return (
-    <div className={`flex ${reverse ? "flex-row-reverse" : "flex-row"} gap-8 grow border border-gray-700 rounded overflow-hidden`}>
-      <Image className="w-full" src={imageSrc} height="400" width="600" alt="" />
-      <div className="flex flex-col gap-6 p-6 w-full justify-center">
+    <div className={`flex ${reverse ? "md:flex-row-reverse flex-col" : "md:flex-row flex-col"} lg:gap-8 grow border border-gray-700 rounded overflow-hidden`}>
+      <Image className="grow lg:w-[400px] md:w-[240px] h-[300px] object-cover" src={imageSrc} height="400" width="600" alt="" />
+      <div className="flex flex-col gap-6 p-6 grow justify-center">
         <Heading3 text={title}/>
-        <p className="max-w-xl text-xl">{paragraph}</p>
+        <p className="w-full max-w-4xl flex lg:text-xl md:text-lg text-md">
+          {paragraph}
+        </p>
       </div>
     </div>
     
@@ -146,15 +135,15 @@ const Heading3 = ({ text }) => (
 )
 
 const Heading2 = ({ text }) => (
-    <h2 className={`text-6xl ${display.className}`}>{text}</h2>
+    <h2 className={`lg:text-6xl md:text-4xl text-3xl ${display.className}`}>{text}</h2>
 )
 
 const AboutUs = () => {
   return (
-    <section id="about-us" className="py-20 w-full flex flex-col items-center justify-center">
+    <section id="about-us" className="lg:py-20 md:py-16 py-14 lg:px-20 px-10 w-full flex flex-col items-center justify-center">
       <div className="w-full max-w-7xl gap-10 flex flex-col">
         <Heading2 text="Who are we?" />
-        <p className="w-full max-w-4xl flex text-2xl">
+        <p className="w-full max-w-4xl flex lg:text-xl md:text-lg text-md">
           Driven by our values, we demand results, creativity and innovation in all our work. Our solutions are personalised and speak to our commitment to customer focus. We are effective team players and put an emphasis on collaboration, agility and continuous improvement.
           <br />
           <br />
@@ -167,9 +156,9 @@ const AboutUs = () => {
 
 const Hero = () => {
   return (
-    <section className="h-[60vh] w-full flex items-center justify-center">
-      <div className="w-full max-w-7xl">
-        <h1 className={`text-8xl max-w-6xl ${display.className}`}>Get personalized and creative marketing for your business.</h1>
+    <section id="about-us" className="lg:py-20 md:py-16 py-14 lg:px-20 px-10 w-full flex flex-col items-center justify-center">
+      <div className="w-full lg:max-w-7xl max-w-5xl">
+        <h1 className={`lg:text-7xl md:text-5xl md:text-left text-center text-4xl lg:max-w-6xl max-w-xl ${display.className}`}>Get personalized and creative marketing for your business.</h1>
       </div>
     </section>
   );
@@ -177,10 +166,10 @@ const Hero = () => {
 
 const NavBar = () => {
   return (
-    <nav className="h-[90px] bg-[#1b1f22] border-b sticky top-0 border-gray-700 flex justify-center">
-      <div className="w-full max-w-7xl h-full flex justify-between">
+    <nav className="h-[90px] px-10 bg-[#1b1f22] border-b sticky top-0 border-gray-700 flex justify-center">
+      <div className="w-full max-w-7xl h-full flex lg:justify-between justify-center">
         <Logo />
-        <div className="w-full max-w-3xl flex gap-4 justify-end">
+        <div className="hidden w-full max-w-3xl lg:flex gap-4 justify-end">
           <Menus />
           <Button />
         </div>
@@ -192,9 +181,9 @@ const NavBar = () => {
 const Button = () => {
   return (
     <div className="flex items-center">
-      <Link href="#" className="border border-white px-4 py-2">
+      <a href="#contact" className="border border-white px-4 py-2">
         <span className="text-md">TALK TO US</span>
-      </Link>
+      </a>
     </div>
   );
 }
