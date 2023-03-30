@@ -1,6 +1,10 @@
+"use client"
+
+import { useForm } from "react-hook-form"
 import Image from "next/image";
 import { Inter, DM_Serif_Display } from 'next/font/google';
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 const display = DM_Serif_Display({ weight: "400", subsets: ['latin'] });
@@ -12,7 +16,74 @@ export default function Home() {
       <Hero />
       <AboutUs />
       <Services />
+      <Form />
     </main>
+  )
+}
+
+const Form = () => {
+  const { register, handleSubmit, reset, formState } = useForm();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({name: "", email: "", phone: "", message: ""})
+    }
+  }, [formState.isSubmitSuccessful, setIsSubmitted, reset])
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await fetch("/api/mail", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+       }) 
+
+      console.log(res)
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
+    <>
+      {!isSubmitted && (
+        <form id="contact" className="py-20 w-full flex flex-col items-center justify-center" onSubmit={handleSubmit(onSubmit)} >
+          <div className="w-full max-w-7xl items-center gap-10 flex flex-col ">
+            <Heading2 text="Contact Us" />
+            <div className="w-full max-w-xl gap-6 flex flex-col ">
+              <div className="flex flex-col gap-3">
+                <label htmlFor="name">Name</label>
+                <input className="rounded outline-none p-2 text-black" placeholder="Jane Doe" id="name" type="text" {...register("name", { required: true })} />
+              </div>
+              <div className="flex flex-col gap-3">
+                <label htmlFor="phone">Phone</label>
+                <input className="rounded outline-none p-2 text-black" placeholder="0701234567" id="phone" type="phone" {...register("phone", { required: true })} />
+              </div>
+              <div className="flex flex-col gap-3">
+                <label htmlFor="email">Email</label>
+                <input className="rounded outline-none p-2 text-black" placeholder="jane@doe.com" id="email" type="email" {...register("email", { required: true })} />
+              </div>
+              <div className="flex flex-col gap-3">
+                <label htmlFor="message">Message</label>
+                <textarea className="rounded outline-none p-2 text-black h-40" placeholder="Start typing..." id="message" type="message" {...register("message", { required: true })}></textarea>
+              </div>
+              <button type="submit" className="rounded border border-white p-4">Send</button>
+            </div>
+          </div>
+        </form>
+      )}
+
+      {isSubmitted && (
+        <div>
+          <Heading3 text="Thanks" />
+        </div>
+      )}
+    </>
   )
 }
 
@@ -131,10 +202,10 @@ const Button = () => {
 const Menus = () => {
   return (
     <div className="flex items-center">
-      <Link href="#" className="h-full flex items-center px-4">Home</Link>
-      <Link href="#about-us" className="h-full flex items-center px-4">About Us</Link>
-      <Link href="#services" className="h-full flex items-center px-4">Services</Link>
-      <Link href="#contact" className="h-full flex items-center px-4">Contact</Link>
+      <a href="#" className="h-full flex items-center px-4">Home</a>
+      <a href="#about-us" className="h-full flex items-center px-4">About Us</a>
+      <a href="#services" className="h-full flex items-center px-4">Services</a>
+      <a href="#contact" className="h-full flex items-center px-4">Contact</a>
     </div>
   );
 }
