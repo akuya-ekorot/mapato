@@ -11,7 +11,7 @@ export default async function Home() {
   // this is the nextjs 13's new fetch api
   // fetch data from https://mapato.co/api
   // and set in such a way that it will be incerementally static regenerated
-  const res = await fetch("http://localhost:3000/api", {
+  const res = await fetch("https://mapato.co/api", {
 	  cache: "no-cache",
   });
 
