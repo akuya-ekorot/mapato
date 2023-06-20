@@ -12,7 +12,7 @@ export default async function Home() {
   // fetch data from https://mapato.co/api
   // and set in such a way that it will be incerementally static regenerated
   const res = await fetch("https://mapato.co/api", {
-	  cache: "no-cache",
+	  cache: "no-store",
   });
 
   const result = await res.json();
