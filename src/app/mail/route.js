@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
-  const { name, email, message } = req.body;
+  const { name, email, message, phone } = await req.json();
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -10,10 +10,9 @@ export async function POST(req) {
     },
   });
 
-  // to: "akuyaekorot@gmail.com, akuya@mapato.co, wainaina@mapato.co, wainainakasyoka@gmail.com, faith.murungu@mapato.co, murunguf07@gmail.com",
   const mailOptions = {
     from: email,
-    to: "akuyaekorot@gmail.com",
+    to: "akuyaekorot@gmail.com, akuya@mapato.co, wainaina@mapato.co, wainainakasyoka@gmail.com, faith.murungu@mapato.co, murunguf07@gmail.com",
     subject: `MAPATO: Form Submission from ${name}`,
     html: `<div>
             <h2>Name</h2>
@@ -30,6 +29,10 @@ export async function POST(req) {
   try {
     const info = await transporter.sendMail(mailOptions);
     console.log(info);
+    return {
+      status: 200,
+      body: { message: "Email sent successfully" },
+    };
   } catch (error) {
     console.log(error);
   }
