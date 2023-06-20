@@ -15,7 +15,7 @@ const Form = ({ title, description, slug }) => {
 
   const onSubmit = async (data) => {
     try {
-      await fetch("http://localhost:3000/mail", {
+      await fetch("http://mapato.co/mail", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
