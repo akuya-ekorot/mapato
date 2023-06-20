@@ -1,4 +1,5 @@
 "use client";
+
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import Heading2 from "./Heading2";
@@ -14,7 +15,7 @@ const Form = ({ title, description, slug }) => {
 
   const onSubmit = async (data) => {
     try {
-      await fetch("/api/mail", {
+      await fetch("http://localhost:3000/mail", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",

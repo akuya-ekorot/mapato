@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Digital Strategy",
+    "slug": "digital-strategy",
+    "image": "https://cdn.sanity.io/images/g4cdv36z/production/fb10c93d3099e08998e74fc01018b09ec14061b0-6016x4016.jpg",
+    "description": "In an ever-changing and complex landscape, we offer clarity. Our range in expertise helps our clients identify the best channels to reach the target audience. From social, to email, from paid to organic, we offer what's best for you."
+  },
+  {
+    "image": "https://cdn.sanity.io/images/g4cdv36z/production/8bc218634207ff1fe4ecffdfdba08c207cbd03aa-5568x3712.jpg",
+    "description": "Content is King, and we are the King's wisest advisors. We help our clients find their voice and style in the content they produce. We'll help you inspire, educate, engage and entertain your audience.",
+    "name": "Content Strategy",
+    "slug": "content-strategy"
+  },
+  {
+    "image": "https://cdn.sanity.io/images/g4cdv36z/production/6ad6613c6bd4c1bc2d60f419045c908fa9cd52e5-4608x3072.jpg",
+    "description": "The strategies we work on fit in perfectly with our clients' business goals. We'll hold your hand from identifying the target audience, crafting unique value propositions, and developing messaging that resonates with your audience and delivers results.",
+    "name": "Marketing Strategy",
+    "slug": "marketing-strategy"
+  },
+  {
+    "name": "Copywriting",
+    "slug": "copywriting",
+    "image": "https://cdn.sanity.io/images/g4cdv36z/production/7392d3d5f60872b74193432ad10fa2d8dd1edaad-5184x3456.jpg",
+    "description": "Craftsmen when it comes to communication, we deliver messaging that not only resonates, but is effective and engaging."
+  }
+]

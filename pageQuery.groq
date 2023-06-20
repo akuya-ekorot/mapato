@@ -1,0 +1,9 @@
+*[_type == "page" && title == "Home"]{
+	"hero": hero->{title, subtitle, "backgroundImage": backgroundImage.asset->url},
+	"sections": sections[]->{
+		"title": display_title,
+		"description": description,
+		"slug": slug.current
+	},
+}[0]
+

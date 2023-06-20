@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "backgroundImage": null,
+    "title": "Get personalized and creative marketing for your business.",
+    "subtitle": null
+  },
+  "sections": [
+    {
+      "title": "Who are we?",
+      "description": "Driven by our values, we demand results, creativity and innovation in all our work. Our solutions are personalised and speak to our commitment to customer focus. We are effective team players and put an emphasis on collaboration, agility and continuous improvement.\n\nWe value all this with the singular vision of providing the most innovative, personal and creative marketing solutions for our clients. It’s our job to help our clients tell their unique story and communicate effectively.",
+      "slug": "about-us"
+    },
+    {
+      "title": "Services we offer",
+      "description": "We are passionate about delivering effective copy, and strategy in marketing, digital and content.",
+      "slug": "services"
+    },
+    {
+      "title": "Contact us",
+      "description": "If there's anything we can do for you, don't hesitate to reach out by filling the form below.",
+      "slug": "contact-us"
+    }
+  ]
+}
